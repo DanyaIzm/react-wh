@@ -9,14 +9,18 @@ const App = () => {
   const [roundsAmount, setRoundsAmount] = useState(null);
   const [lastSecondsToHoldBreath, setLastSecondsToHoldBreath] = useState(0);
   const [secondsToHoldBreath, setSecondsToHoldBreath] = useState(0);
-  const [isInterbreathing, setIsInterbreathing] = useState(false);
   const [isAfterholding, setIsAfterholding] = useState(false);
   const [isBreathingBeforeAfterholding, setIsBreathingBeforeAfterholding] =
     useState(false);
+  const [isDeepBreathing, setIsDeepBreathing] = useState(false);
 
-  const afterDeepBreath = () => {
+  const afterOneDeepBreath = () => {
     setIsBreathingBeforeAfterholding(false);
     setIsAfterholding(true);
+  };
+
+  const afterDeepBreathing = () => {
+    setIsDeepBreathing(false);
   };
 
   const finishTimer = () => {
@@ -31,7 +35,7 @@ const App = () => {
   };
 
   const onSecondsSelected = (seconds) => {
-    setIsInterbreathing(true);
+    setIsDeepBreathing(true);
     setSecondsToHoldBreath(seconds);
   };
 
@@ -39,8 +43,22 @@ const App = () => {
     return <EndSessinoPage />;
   }
 
+  if (isDeepBreathing) {
+    return (
+      <DeepBreathPage
+        text={"Now do 20-35 deep breaths and push the button below!"}
+        onFinish={afterDeepBreathing}
+      />
+    );
+  }
+
   if (isBreathingBeforeAfterholding) {
-    return <DeepBreathPage onFinish={afterDeepBreath} />;
+    return (
+      <DeepBreathPage
+        text={"Now do a deep breath and push the button below!"}
+        onFinish={afterOneDeepBreath}
+      />
+    );
   }
 
   if (isAfterholding) {

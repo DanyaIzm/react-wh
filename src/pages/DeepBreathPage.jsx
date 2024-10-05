@@ -1,6 +1,6 @@
 import { Button, Container, Flex, Heading, Stack } from "@chakra-ui/react";
 
-const DeepBreathPage = ({ onFinish }) => {
+const DeepBreathPage = ({ text, onFinish }) => {
   return (
     <Container w={"100%"}>
       <Flex
@@ -12,7 +12,7 @@ const DeepBreathPage = ({ onFinish }) => {
       >
         <Stack spacing={4}>
           <Heading size={"lg"} textAlign={"center"}>
-            Now do a deep breath and push the button below!
+            {text}
           </Heading>
           <Button onClick={onFinish}>Finish</Button>
         </Stack>
