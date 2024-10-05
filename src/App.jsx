@@ -62,7 +62,7 @@ const App = () => {
   }
 
   if (isAfterholding) {
-    return <TimerPage duration={3} onFinish={finishAfterholding} />;
+    return <TimerPage duration={15} onFinish={finishAfterholding} />;
   }
 
   if (roundsAmount === null) {
