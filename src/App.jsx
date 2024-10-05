@@ -1,7 +1,17 @@
+import { useState } from "react";
 import "./App.css";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
+import SessionSettingPage from "./pages/SessionSettingPage";
 
 const App = () => {
+  const [roundsAmount, setRoundsAmount] = useState(null);
+
+  console.log("YAY", roundsAmount);
+
+  if (roundsAmount === null) {
+    return <SessionSettingPage onRoundsSelected={setRoundsAmount} />;
+  }
+
   return (
     <>
       <div className="timer">
