@@ -44,7 +44,7 @@ const SessionSettingPage = ({ onRoundsSelected }) => {
             <FormErrorMessage>Invalid number of rounds</FormErrorMessage>
           </FormControl>
           <Button colorScheme="teal" onClick={submitRounds}>
-            Button
+            Submit
           </Button>
         </Stack>
       </Flex>
