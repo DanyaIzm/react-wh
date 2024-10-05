@@ -1,16 +1,17 @@
 import { useState } from "react";
-import "./App.css";
-import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import SessionSettingPage from "./pages/SessionSettingPage";
 import SecondsSettingPage from "./pages/SecondsSettingPage";
+import TimerPage from "./pages/TimerPage";
 
 const App = () => {
   const [roundsAmount, setRoundsAmount] = useState(null);
-  const [lastSecondsToHoldBreath, setLastSecondsToHoldBreath] = useState(800);
+  const [lastSecondsToHoldBreath, setLastSecondsToHoldBreath] = useState(0);
   const [secondsToHoldBreath, setSecondsToHoldBreath] = useState(0);
 
-  console.log("YAY", roundsAmount);
-  console.log("secs", secondsToHoldBreath);
+  const finishTimer = () => {
+    setLastSecondsToHoldBreath(secondsToHoldBreath);
+    setSecondsToHoldBreath(0);
+  };
 
   if (roundsAmount === null) {
     return <SessionSettingPage onRoundsSelected={setRoundsAmount} />;
@@ -27,16 +28,7 @@ const App = () => {
 
   return (
     <>
-      <div className="timer">
-        <CountdownCircleTimer
-          isPlaying
-          duration={7}
-          colors={["#004777", "#F7B801", "#A30000", "#A30000"]}
-          colorsTime={[7, 5, 2, 0]}
-        >
-          {({ remainingTime }) => remainingTime}
-        </CountdownCircleTimer>
-      </div>
+      <TimerPage duration={secondsToHoldBreath} onFinish={finishTimer} />
     </>
   );
 };
